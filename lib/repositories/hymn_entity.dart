@@ -39,16 +39,16 @@ class HymnEntity {
 
   @override
   String toString() {
-    return 'HymnEntity{title: $title, description: $description, totalNumOfSongs: $totalNumOfSongs, songs: $songs,  id: $id}';
+    return 'HymnEntity{ title: $title, description: $description, totalNumOfSongs: $totalNumOfSongs, songs: $songs,  id: $id}';
   }
 
   static HymnEntity fromJson(Map<String, Object> json) {
     return HymnEntity(
+      json['id'] as String,
       json['title'] as String,
       json['description'] as String,
       json['totalNumOfSongs'] as String,
-      json['songs'] as List,
-      json['id'] as int,
+      json['songs'] as List<dynamic>,
     );
   }
 }

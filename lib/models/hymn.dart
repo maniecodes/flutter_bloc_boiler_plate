@@ -11,8 +11,8 @@ class Hymn extends Equatable {
   Hymn(this.title,
       {String description = '',
       String totalNumOfSongs = '',
-      List<int> songs,
-      int id})
+      List<dynamic> songs,
+      String id})
       : this.description = description ?? '',
         this.totalNumOfSongs = totalNumOfSongs ?? '',
         this.songs = songs ?? '',
@@ -22,8 +22,8 @@ class Hymn extends Equatable {
       {String title,
       String description,
       String totalNumOfSongs,
-      List<int> songs,
-      int id}) {
+      List<dynamic> songs,
+      String id}) {
     return Hymn(title ?? this.title,
         description: description ?? this.description,
         totalNumOfSongs: totalNumOfSongs ?? this.totalNumOfSongs,

@@ -8,7 +8,11 @@ import 'package:flutter_bloc_boiler_plate/repositories/hymns_repository.dart';
 class HymnsBloc extends Bloc<HymnsEvent, HymnsState> {
   final HymnsRepository hymnsRepository;
 
-  HymnsBloc({@required this.hymnsRepository}) : super(HymnsLoadInProgress());
+  HymnsBloc({@required this.hymnsRepository})
+      : assert(hymnsRepository != null),
+        super(null);
+
+  HymnsState get initialState => HymnsLoadInProgress();
 
   @override
   Stream<HymnsState> mapEventToState(HymnsEvent event) async* {
@@ -19,11 +23,14 @@ class HymnsBloc extends Bloc<HymnsEvent, HymnsState> {
 
   Stream<HymnsState> _mapHymnsLoadedToState() async* {
     try {
+      print('loading hymns');
       final hymns = await this.hymnsRepository.loadHymns();
+      print(hymns);
       yield HymnsLoadSuccess(
         hymns.map(Hymn.fromEntity).toList(),
       );
-    } catch (_) {
+    } catch (e) {
+      print(e.toString());
       yield HymnsLoadFailure();
     }
   }
