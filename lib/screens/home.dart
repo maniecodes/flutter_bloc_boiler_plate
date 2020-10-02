@@ -8,6 +8,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HymnsBloc, HymnsState>(builder: (context, state) {
+      print(state);
+      print('state');
       if (state is HymnsLoadInProgress) {
         return CircularProgressIndicator();
       } else if (state is HymnsLoadSuccess) {

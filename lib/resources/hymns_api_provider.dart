@@ -11,10 +11,13 @@ class HymnsApiProvider implements HymnsRepository {
   @override
   Future<List<HymnEntity>> loadHymns() async {
     try {
-      Response<dynamic> res = await _dio.get('$_endpoint/hymn');
+      Response<dynamic> res = await _dio.get('$_endpoint/hymn/all');
       final json = res.data['data'];
+      print(json);
       final hymns =
           (json).map<HymnEntity>((hymn) => HymnEntity.fromJson(hymn)).toList();
+      print('my hymns');
+      print(hymns);
       return hymns;
     } catch (error, stacktrace) {
       print(error);

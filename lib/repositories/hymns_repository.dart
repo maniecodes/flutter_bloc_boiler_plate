@@ -7,5 +7,6 @@ abstract class HymnsRepository {
   /// error, it attempts to load the Todos from a Web Client.
   Future<List<HymnEntity>> loadHymns();
 
+  // Save to local storage
   Future saveHymns(List<HymnEntity> hymns);
 }

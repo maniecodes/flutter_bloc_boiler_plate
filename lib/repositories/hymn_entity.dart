@@ -1,16 +1,18 @@
 class HymnEntity {
   final id;
+  final hymnId;
   final title;
   final description;
   final totalNumOfSongs;
   final songs;
 
-  HymnEntity(
-      this.id, this.title, this.description, this.totalNumOfSongs, this.songs);
+  HymnEntity(this.id, this.hymnId, this.title, this.description,
+      this.totalNumOfSongs, this.songs);
 
   @override
   int get hashCode =>
       id.hashCode ^
+      hymnId.hashCode ^
       title.hashCode ^
       description.hashCode ^
       totalNumOfSongs.hashCode ^
@@ -22,6 +24,7 @@ class HymnEntity {
       other is HymnEntity &&
           runtimeType == other.runtimeType &&
           title == other.title &&
+          hymnId == other.hymnId &&
           description == other.description &&
           totalNumOfSongs == other.totalNumOfSongs &&
           songs == other.songs &&
@@ -30,6 +33,7 @@ class HymnEntity {
   Map<String, Object> toJson() {
     return {
       'title': title,
+      'hymnId': hymnId,
       'description': description,
       'totalNumOfSongs': totalNumOfSongs,
       'songs': songs,
@@ -39,12 +43,13 @@ class HymnEntity {
 
   @override
   String toString() {
-    return 'HymnEntity{ title: $title, description: $description, totalNumOfSongs: $totalNumOfSongs, songs: $songs,  id: $id}';
+    return 'HymnEntity {title: $title, hymnId: $hymnId, description: $description, totalNumOfSongs: $totalNumOfSongs, songs: $songs,  id: $id}';
   }
 
   static HymnEntity fromJson(Map<String, Object> json) {
     return HymnEntity(
-      json['id'] as String,
+      json['_id'] as String,
+      json['hymnId'] as int,
       json['title'] as String,
       json['description'] as String,
       json['totalNumOfSongs'] as String,

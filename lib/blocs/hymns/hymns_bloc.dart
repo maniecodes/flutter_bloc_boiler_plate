@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_boiler_plate/blocs/hymns/hymns_event.dart';
-import 'package:flutter_bloc_boiler_plate/blocs/hymns/hymns_state.dart';
-import 'package:flutter_bloc_boiler_plate/models/hymn.dart';
+import 'package:flutter_bloc_boiler_plate/blocs/hymns/hymns.dart';
+import 'package:flutter_bloc_boiler_plate/models/models.dart';
 import 'package:flutter_bloc_boiler_plate/repositories/hymns_repository.dart';
 
 class HymnsBloc extends Bloc<HymnsEvent, HymnsState> {
@@ -10,12 +9,11 @@ class HymnsBloc extends Bloc<HymnsEvent, HymnsState> {
 
   HymnsBloc({@required this.hymnsRepository})
       : assert(hymnsRepository != null),
-        super(null);
-
-  HymnsState get initialState => HymnsLoadInProgress();
+        super(HymnsLoadInProgress());
 
   @override
   Stream<HymnsState> mapEventToState(HymnsEvent event) async* {
+    print('event is $event');
     if (event is HymnsLoaded) {
       yield* _mapHymnsLoadedToState();
     }
