@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_boiler_plate/blocs/songs/songs_bloc.dart';
 import 'package:flutter_bloc_boiler_plate/blocs/songs/songs_event.dart';
 import 'package:flutter_bloc_boiler_plate/blocs/songs/songs_state.dart';
-import 'package:flutter_bloc_boiler_plate/utils/utils.dart';
+import 'package:flutter_bloc_boiler_plate/screens/song_details.dart';
 
 // ignore: must_be_immutable
 class SongScreen extends StatelessWidget {
@@ -34,20 +34,67 @@ class SongScreen extends StatelessWidget {
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemBuilder: (context, i) => Card(
-                        elevation: 2.0,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 5.0, vertical: 3.0),
+                  itemBuilder: (context, i) => InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return SongDetails(
+                                songNumber: songs[i].songNumber,
+                                title: songs[i].title,
+                                verses: songs[i].verses,
+                                similarTunes: songs[i].similarTune,
+                                alternativeTunes: songs[i].alternateTune);
+                          }));
+                        },
                         child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent[100]),
-                          child: ListTile(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 5.0),
-                            leading: Container(
-                              child: Text('${i + 1}.'),
-                            ),
-                            title: Text('${songs[i].title}'),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        child: Container(
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey.shade400,
+                                          width: 0.2,
+                                        ),
+                                        boxShadow: <BoxShadow>[
+                                          BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            offset: Offset(1, 1),
+                                            blurRadius: 10,
+                                            spreadRadius: 4,
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Text(
+                                                  '${songs[i].songNumber}.'),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Text('${songs[i].title}'),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ))
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),

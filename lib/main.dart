@@ -47,14 +47,46 @@ class MyApp extends StatelessWidget {
           AppTheme.isLightTheme ? Brightness.dark : Brightness.light,
     ));
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: FlutterBlocLocalizations().appTitle,
       theme: AppTheme.getTheme(),
       localizationsDelegates: [FlutterBlocLocalizationsDelegate()],
       routes: {
         ChurchRoutes.home: (context) {
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              title: Text(FlutterBlocLocalizations.of(context).appTitle),
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      height: 4.0,
+                      width: 18.0,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(2.0),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 4.0,
+                    ),
+                    Container(
+                      height: 4.0,
+                      width: 12.0,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(2.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             drawer: Drawer(),
             body: Home(),

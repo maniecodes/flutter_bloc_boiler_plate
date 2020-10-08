@@ -16,7 +16,30 @@ class Home extends StatelessWidget {
         final hymns = state.hymns;
         print('i got inside');
         print(hymns);
-        return HymnList(hymnList: hymns);
+        // return
+        return SingleChildScrollView(
+          
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                      style: Theme.of(context).textTheme.headline4,
+                      children: [
+                        TextSpan(text: "List of "),
+                        TextSpan(
+                          text: "hymns",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ]),
+                ),
+                HymnList(hymnList: hymns),
+              ],
+            ),
+          ),
+        );
       } else {
         return Container(key: ChurchKeys.hymnsEmptyContainer);
       }

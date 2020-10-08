@@ -4,6 +4,7 @@ class AppTheme {
   static bool isLightTheme = true;
   static Color primaryColors = HexColor("#223FA1");
   static Color secondaryColors = Colors.purpleAccent[100];
+  static Color kIconColors = Color(0xFFF48A37);
 
   static TextTheme _buildTextTheme(TextTheme base) {
     var fontName = "WorkSans";
@@ -35,6 +36,7 @@ class AppTheme {
   static ThemeData newLightTheme() {
     Color primaryColor = primaryColors;
     Color secondaryColor = secondaryColors;
+    Color kIconColor = kIconColors;
     final ColorScheme designScheme = const ColorScheme.light().copyWith(
       primary: HexColor('#653ed6'),
       secondary: HexColor('#2c0996'),
@@ -52,6 +54,7 @@ class AppTheme {
       splashFactory: InkRipple.splashFactory,
       accentColor: secondaryColor,
       canvasColor: Colors.white,
+      hintColor: kIconColor,
       backgroundColor: const Color(0xFFFFFFFF),
       scaffoldBackgroundColor: const Color(0xFFF6F6F6),
       errorColor: const Color(0xFFB00020),
